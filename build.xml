@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="runclient" name="pubsub">
+	<property name="codeBase" value="file:D:\Users\danny\workspace\pubsub" />
+    <target name="compileclient">
+    <javac srcdir="./buildsrc/" destdir="." classpathref="dependency.path" />
+    </target>
+	<path id="dependency.path">
+	<fileset dir="./apachemq/" includes="*.jar"/>
+		</path>
+    <target name="runclient" depends="compileclient">
+        <parallel>
+        <java classname="blogMain" fork="true" newenvironment="true"  classpathref="dependency.path">
+            <classpath path="."/>
+        </java>
+        <java classname="blogMain" fork="true" newenvironment="true" classpathref="dependency.path">
+        	<classpath path="."/>
+        </java>
+        </parallel>
+    </target>
+    </project>
